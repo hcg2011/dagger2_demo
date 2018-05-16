@@ -13,8 +13,6 @@
         "The fundamentals of light, surface, and movement are key to conveying how objects move, "
         "interact, and exist in space and in relation to each other. Realistic lighting shows "
         "seams, divides space, and indicates moving parts.\n\n"
-
-        "Bold, graphic, intentional.\n\n"
     </string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
@@ -23,4 +21,12 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+
+
+    <string name="static_shortcut_disabled_message">test message</string>
+    <string name="static_shortcut_long_label_1">long_label</string>
+    <string name="static_shortcut_short_label_1">short_label</string>
+    <string name="static_shortcut_disabled_message2">test message2</string>
+    <string name="static_shortcut_long_label_2">long_label2</string>
+    <string name="static_shortcut_short_label_2">short_label2</string>
 </resources>
