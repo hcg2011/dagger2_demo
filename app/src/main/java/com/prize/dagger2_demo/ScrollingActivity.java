@@ -59,7 +59,7 @@ public class ScrollingActivity extends AppCompatActivity {
                 int currentValue = (Integer) animator.getAnimatedValue();
 
                 // 获得每次变化后的属性值
-                //System.out.println(currentValue);
+                System.out.println(currentValue);
                 // 输出每次变化后的属性值进行查看
                 ViewGroup.LayoutParams params = view.getLayoutParams();
                 params.width = currentValue;
