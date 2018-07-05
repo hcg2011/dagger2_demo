@@ -19,13 +19,14 @@ public class TestService extends Service {
 
     @Override
     public IBinder onBind(Intent arg0) {
+        Log.d("hcg_test", "onBind——mStub!!!"+mStub);
         return mStub;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-
+        Log.d("hcg_test", "TestService——onCreate!!!");
         mStub = new TestAidlInterface.Stub() {
             @Override
             public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
@@ -46,19 +47,18 @@ public class TestService extends Service {
             @Override
             public void setCallBack(DeliveryMethod callback) throws RemoteException {
                 mMCallBack = callback;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            mMCallBack.setCallBackDatas();
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, 3 * 1000);
             }
         };
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    mMCallBack.setCallBackDatas();
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, 3 * 1000);
     }
 
     @Override

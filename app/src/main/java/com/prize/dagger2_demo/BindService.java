@@ -1,32 +1,43 @@
 package com.prize.dagger2_demo;
 
+import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 
-import static android.content.Context.BIND_AUTO_CREATE;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
-/**
- * @Description
- * @Author huangchangguo
- * @Created 2018/7/5 17:58
- */
-public class BindUtils {
+public class BindService extends Service {
 
     private static TestAidlInterface mAidl;
     private static ServiceConnection mConnection;
-    private static BindUtils mInstance;
 
-    public static BindUtils getInstance(){
-        synchronized (BindUtils.class) {
-            if (mInstance == null)
-                mInstance = new BindUtils();
-        }
-        return mInstance;
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        EventBus.getDefault().register(this);
+        bindService(this);
+    }
+
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+
+        return super.onStartCommand(intent, flags, startId);
     }
 
     public void bindService(Context ctx) {
@@ -57,14 +68,36 @@ public class BindUtils {
         });
     }
 
+    @Subscribe(threadMode = ThreadMode.BACKGROUND)
+    public void onMessageEvent(MessageEvent event) {
+        dispatchMsg(event);
+    }
+
+    private void dispatchMsg(MessageEvent event) {
+        String testmsg = event.getTestmsg();
+        if (!TextUtils.isEmpty(testmsg)) {
+            try {
+                convertData(testmsg);
+                getDeliveryData();
+                setCallBack();
+            } catch (RemoteException e) {
+                Log.d("hcg_test", "RemoteException=" + e.getMessage());
+            }
+        }
+    }
+
     public void getDeliveryData() throws RemoteException {
         String s = mAidl.diliverData();
         Log.d("hcg_test", "s====" + s);
     }
 
-    public void convertData() throws RemoteException {
-        mAidl.convertData("kjasdhfkjaslfha!!!!");
+    public void convertData(String msg) throws RemoteException {
+        mAidl.convertData(msg);
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }
