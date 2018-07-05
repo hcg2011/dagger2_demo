@@ -29,4 +29,33 @@
     <string name="static_shortcut_disabled_message2">test message2</string>
     <string name="static_shortcut_long_label_2">long_label2</string>
     <string name="static_shortcut_short_label_2">short_label2</string>
+    <string name="title_activity_bottom_navi">bottomNaviActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_masteractivity_list">Items</string>
+    <string name="title_masteractivity_detail">MasterActivity Detail</string>
+    <string name="title_activity_navi_drawer">NaviDrawerActivity</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="title_activity_table">TableActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>

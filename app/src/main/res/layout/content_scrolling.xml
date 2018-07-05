@@ -9,26 +9,59 @@
     tools:context=".ScrollingActivity"
     tools:showIn="@layout/activity_scrolling">
 
-    <LinearLayout
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh"
         android:layout_width="match_parent"
-        android:orientation="vertical"
         android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:text="@string/large_text"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:text="@string/large_text"/>
 
-        <EditText
-            android:id="@+id/et"
-            android:background="@color/colorPrimary"
-            android:layout_width="100dp"
-            android:layout_height="40dp"/>
-        <!--<View-->
+            <EditText
+                android:id="@+id/et"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:background="@color/colorPrimary"/>
+
+            <Button
+                android:id="@+id/one"
+                android:text="one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/two"
+                android:text="two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/three"
+                android:text="three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/four"
+                android:text="four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/five"
+                android:text="table"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <!--<View-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="300dp"-->
             <!--android:background="@color/colorPrimary"/>-->
-    </LinearLayout>
-
+        </LinearLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </android.support.v4.widget.NestedScrollView>
