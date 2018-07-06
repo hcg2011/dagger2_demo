@@ -4,6 +4,8 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.IInterface;
+import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.util.Log;
 
@@ -16,6 +18,7 @@ public class TestService extends Service {
 
     private TestAidlInterface.Stub mStub;
     private DeliveryMethod mMCallBack;
+    private RemoteCallbackList<IInterface>  mList=new RemoteCallbackList();
 
     @Override
     public IBinder onBind(Intent arg0) {
@@ -46,7 +49,8 @@ public class TestService extends Service {
 
             @Override
             public void setCallBack(DeliveryMethod callback) throws RemoteException {
-                mMCallBack = callback;
+                mList.register(callback);
+                IInterface item = mList.getBroadcastItem(0);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
