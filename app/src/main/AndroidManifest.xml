@@ -41,7 +41,12 @@
 
         <service
             android:name=".TestService"
-            android:process=":bottomNavi"/>
+            android:process=":test1"/>
+
+        <service
+            android:name=".Test2Service"
+            android:process=":test2"/>
+
         <service
             android:name=".BindService"/>
 
