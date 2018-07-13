@@ -23,7 +23,7 @@ public class Test2Service extends Service {
 
     @Override
     public IBinder onBind(Intent arg0) {
-        Log.d("hcg_test", "onBind——mStub!!!2 "+mStub);
+        Log.d("hcg_test", "onBind——mStub2 !!!"+mStub);
         return mStub;
     }
 
@@ -59,7 +59,7 @@ public class Test2Service extends Service {
                 DeliveryMethod item = (DeliveryMethod) mList.getBroadcastItem(0);
                 try {
                     item.setCallBackDatas();
-                    Log.d("hcg_test", "Test2Service!_bindService1 !!!");
+                    Log.d("hcg_test", "Test2Service!_bindService2-1 !!!");
                     Intent mIntent = new Intent(Test2Service.this, TestService.class);
                     Test2Service.this.bindService(mIntent, connection, BIND_AUTO_CREATE);
                 } catch (RemoteException e) {
