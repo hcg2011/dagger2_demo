@@ -1,6 +1,6 @@
 package com.prize.dagger2_demo.di.component;
 
-import com.prize.dagger2_demo.ScrollingActivity;
+import com.prize.dagger2_demo.activity.bottomNaviActivity;
 
 /**
  * @Description
@@ -9,5 +9,5 @@ import com.prize.dagger2_demo.ScrollingActivity;
  */
 
 public interface ScroolingQualifier {
-    void inject(ScrollingActivity actvity);
+    void inject(bottomNaviActivity.ScrollingActivity actvity);
 }

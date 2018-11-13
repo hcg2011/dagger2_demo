@@ -1,6 +1,6 @@
 package com.prize.dagger2_demo.di.component;
 
-import com.prize.dagger2_demo.ScrollingActivity;
+import com.prize.dagger2_demo.activity.ScrollingActivity;
 import com.prize.dagger2_demo.di.module.Demo2Module;
 
 import dagger.Subcomponent;

@@ -1,6 +1,6 @@
-package com.prize.dagger2_demo;
+package com.prize.dagger2_demo.dummy;
 
-class MessageEvent {
+public class MessageEvent {
 
     private String testmsg;
 

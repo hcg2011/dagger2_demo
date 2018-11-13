@@ -1,4 +1,4 @@
-package com.prize.dagger2_demo;
+package com.prize.dagger2_demo.dummy;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.prize.dagger2_demo.R;
 
 /**
  * 自定义时长的Toast

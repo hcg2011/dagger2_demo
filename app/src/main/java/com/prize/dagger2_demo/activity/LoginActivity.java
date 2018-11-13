@@ -1,4 +1,4 @@
-package com.prize.dagger2_demo;
+package com.prize.dagger2_demo.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -28,6 +28,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.prize.dagger2_demo.dummy.MessageEvent;
+import com.prize.dagger2_demo.R;
 
 import org.greenrobot.eventbus.EventBus;
 

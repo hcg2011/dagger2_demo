@@ -1,4 +1,4 @@
-package com.prize.dagger2_demo;
+package com.prize.dagger2_demo.activity;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -8,31 +8,42 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
+import com.prize.dagger2_demo.R;
 import com.prize.dagger2_demo.di.component.DaggerDemoComponent;
 import com.prize.dagger2_demo.di.module.Demo2Bean;
 import com.prize.dagger2_demo.di.module.DemoBean;
+import com.prize.dagger2_demo.di.module.Scopes;
+import com.prize.dagger2_demo.dummy.CustomEditText;
 import com.prize.dagger2_demo.dummy.TableActivity;
 import com.scwang.smartrefresh.header.TaurusHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import javax.inject.Inject;
 
+/**
+ * @Description
+ * @Author huangchangguo
+ * @Created 2018/11/6 15:20
+ */
 public class ScrollingActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Inject
+    @Scopes.Dev
     DemoBean bean;
-
+    @Inject
+    @Scopes.Master
+    DemoBean bean3;
     public static Context appContext;
-
     @Inject
     Demo2Bean bean2;
-    private EditText mEt;
+    private CustomEditText mEt;
     private SmartRefreshLayout mRefresh;
 
 
@@ -40,13 +51,19 @@ public class ScrollingActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //ViewModelProviders.of(this).get();
         setSupportActionBar(toolbar);
-        DaggerDemoComponent.builder().build().subComponent().build().inject(this);
+        DaggerDemoComponent.create().subComponent().build().inject(this);
+        //        DemoComponent component = DaggerDemoComponent.create();
+        //       DaggerDemoBaseConponent.create().inject(this);
+        //        DaggerDemoDependConponent.builder().demoComponent(component).build().inject(this);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         appContext = this;
-
-        mEt = (EditText) findViewById(R.id.et);
+        //ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication()).create(null);
+        mEt = findViewById(R.id.et);
+        getLifecycle().addObserver(mEt);
         mRefresh = (SmartRefreshLayout) findViewById(R.id.refresh);
 
         findViewById(R.id.one).setOnClickListener(this);
@@ -58,25 +75,43 @@ public class ScrollingActivity extends AppCompatActivity implements View.OnClick
 
         mRefresh.setRefreshHeader(new TaurusHeader(this));
         mRefresh.setEnableRefresh(false);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "bean=" + bean.getDemo() + " bean2=" + bean2.getDemo(), Snackbar.LENGTH_LONG)
-                        .setAction("c", null).show();
-                setAnima(mEt);
+        fab.setOnClickListener(view -> {
+            Log.d("hcg_test", "bean=" + bean + " bean3=" + bean3 + " bean2=" + bean2);
+            Snackbar.make(view, "bean=" + bean.getDemo() + " bean3=" + bean3.getDemo() + " bean2=" + bean2.getDemo2(), Snackbar.LENGTH_LONG)
+                    .setAction("c", null).show();
+            setAnima(mEt);
 
-            }
         });
-
     }
 
-
-
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                Log.d("hcg_dispatchTouchEvent", "MotionEvent.ACTION_DOWN!");
+                return false;
+            // break;
+            case MotionEvent.ACTION_MOVE:
+                Log.d("hcg_dispatchTouchEvent", "MotionEvent.ACTION_MOVE!!!!");
+                break;
+            case MotionEvent.ACTION_UP:
+                Log.d("hcg_dispatchTouchEvent", "MotionEvent.ACTION_UP!");
+                break;
+            case MotionEvent.ACTION_CANCEL:
+                Log.d("hcg_dispatchTouchEvent", "MotionEvent.ACTION_CANCEL!!!!!!!!");
+                break;
+            default:
+                break;
+        }
+        return super.dispatchTouchEvent(ev);
+    }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.one:
+                bean = new DemoBean();
+                bean.setDemo("第二个demo");
                 startActivity(this, new Intent(this, FullscreenActivity.class));
                 break;
             case R.id.two:
@@ -150,6 +185,4 @@ public class ScrollingActivity extends AppCompatActivity implements View.OnClick
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }

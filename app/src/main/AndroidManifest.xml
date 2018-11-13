@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="com.prize.dagger2_demo">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
@@ -14,9 +15,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".ScrollingActivity"
+            android:name=".activity.ScrollingActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -30,58 +32,60 @@
                 android:resource="@xml/shortcuts"/>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".bottomNaviActivity"
+            android:name=".activity.bottomNaviActivity"
             android:label="@string/title_activity_bottom_navi">
         </activity>
 
         <service
-            android:name=".TestService"
+            android:name=".service.TestService"
             android:process=":test1"/>
-
         <service
-            android:name=".Test2Service"
+            android:name=".service.Test2Service"
             android:process=":test2"/>
-
-        <service
-            android:name=".BindService"/>
+        <service android:name=".service.BindService"/>
 
         <activity
-            android:name=".FullscreenActivity"
+            android:name=".activity.FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen"
             android:theme="@style/FullscreenTheme">
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login">
         </activity>
         <activity
-            android:name=".NaviDrawerActivity"
+            android:name=".activity.NaviDrawerActivity"
             android:label="@string/title_activity_navi_drawer"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".ItemListActivity"
+            android:name=".activity.ItemListActivity"
             android:label="@string/title_item_list"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".ItemDetailActivity"
+            android:name=".activity.ItemDetailActivity"
             android:label="@string/title_item_detail"
-            android:parentActivityName=".ItemListActivity"
+            android:parentActivityName=".activity.ItemListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.prize.dagger2_demo.ItemListActivity"/>
+                android:value="com.prize.dagger2_demo.activity.ItemListActivity"/>
         </activity>
         <activity
             android:name=".dummy.TableActivity"
             android:label="@string/title_activity_table"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".eventactivity.EventOneActivity"
+            android:label="@string/title_activity_event_one"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>

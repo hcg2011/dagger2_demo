@@ -1,67 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ScrollingActivity"
-    tools:showIn="@layout/activity_scrolling">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refresh"
+    <data>
+
+        <variable
+            name="scrolling"
+            type="com.prize.dagger2_demo.dummy.ScrollingBean"></variable>
+    </data>
+
+    <android.support.v4.widget.NestedScrollView
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".activity.bottomNaviActivity$ScrollingActivity"
+        tools:showIn="@layout/activity_scrolling">
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/refresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:text="@string/large_text"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/et"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:background="@color/colorPrimary"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:text="@{scrolling.name1}"/>
 
-            <Button
-                android:id="@+id/one"
-                android:text="one"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:id="@+id/two"
-                android:text="two"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                <com.prize.dagger2_demo.dummy.CustomEditText
+                    android:id="@+id/et"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:background="@color/colorPrimary"/>
 
-            <Button
-                android:id="@+id/three"
-                android:text="three"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{scrolling.name2}"/>
 
-            <Button
-                android:id="@+id/four"
-                android:text="four"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{scrolling.name3}"/>
 
-            <Button
-                android:id="@+id/five"
-                android:text="table"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <!--<View-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="300dp"-->
-            <!--android:background="@color/colorPrimary"/>-->
-        </LinearLayout>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-</android.support.v4.widget.NestedScrollView>
+                <Button
+                    android:id="@+id/three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{scrolling.name4}"/>
+
+                <Button
+                    android:id="@+id/four"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{scrolling.name5}"/>
+
+                <Button
+                    android:id="@+id/five"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{scrolling.name6}"/>
+                <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="300dp"-->
+                <!--android:background="@color/colorPrimary"/>-->
+            </LinearLayout>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </android.support.v4.widget.NestedScrollView>
+</layout>

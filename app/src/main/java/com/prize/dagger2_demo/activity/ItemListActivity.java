@@ -1,4 +1,4 @@
-package com.prize.dagger2_demo;
+package com.prize.dagger2_demo.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.prize.dagger2_demo.R;
 import com.prize.dagger2_demo.dummy.DummyContent;
 
 import java.util.List;

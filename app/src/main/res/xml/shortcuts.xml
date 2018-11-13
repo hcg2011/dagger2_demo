@@ -9,7 +9,7 @@
         android:shortcutShortLabel="@string/static_shortcut_short_label_1">
         <intent
             android:action="android.intent.action.MAIN"
-            android:targetClass="com.prize.dagger2_demo.ScrollingActivity"
+            android:targetClass="com.prize.dagger2_demo.activity.bottomNaviActivity.ScrollingActivity"
             android:targetPackage="com.prize.dagger2_demo" />
     </shortcut>
     <shortcut
@@ -21,7 +21,7 @@
         android:shortcutShortLabel="@string/static_shortcut_short_label_2">
         <intent
             android:action="android.intent.action.MAIN"
-            android:targetClass="com.prize.dagger2_demo.ScrollingActivity"
+            android:targetClass="com.prize.dagger2_demo.activity.bottomNaviActivity.ScrollingActivity"
             android:targetPackage="com.prize.dagger2_demo" />
     </shortcut>
 </shortcuts>

@@ -1,12 +1,15 @@
-package com.prize.dagger2_demo;
+package com.prize.dagger2_demo.activity;
 
 import android.annotation.SuppressLint;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.prize.dagger2_demo.R;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -88,6 +91,8 @@ public class FullscreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_fullscreen);
+        //ViewModelProvider.AndroidViewModelFactory
+        DataBindingUtil.setContentView(this,R.layout.activity_fullscreen);
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);

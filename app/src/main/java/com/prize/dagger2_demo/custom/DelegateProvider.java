@@ -4,7 +4,6 @@ import android.util.SparseArray;
 
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.chaychan.adapter.ItemProviderException;
 
 /**
  * @Description 针对多类型的item，通过代理的形式来分发。代理管理类
@@ -39,7 +38,7 @@ public class DelegateProvider<T extends MultiItemEntity, K extends BaseItemDeleg
 
     private void cheackDelegate(K delegate) {
         if (delegate == null) {
-            throw new ItemProviderException("ItemProvider can not be null");
+            throw new IllegalArgumentException("ItemProvider can not be null");
         }
     }
 

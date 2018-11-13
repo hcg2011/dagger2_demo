@@ -1,4 +1,4 @@
-package com.prize.dagger2_demo;
+package com.prize.dagger2_demo.activity;
 
 import android.app.Activity;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.prize.dagger2_demo.R;
 import com.prize.dagger2_demo.dummy.DummyContent;
 
 /**

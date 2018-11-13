@@ -1,4 +1,4 @@
-package com.prize.dagger2_demo;
+package com.prize.dagger2_demo.service;
 
 import android.app.Service;
 import android.content.Intent;
@@ -7,6 +7,12 @@ import android.os.IInterface;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.util.Log;
+
+import com.prize.dagger2_demo.DeliveryMethod;
+import com.prize.dagger2_demo.TestAidlInterface;
+import com.prize.dagger2_demo.di.module.Demo2Bean;
+import com.prize.dagger2_demo.di.module.Demo3Bean;
+import com.prize.dagger2_demo.di.module.DemoBean;
 
 /**
  * @Description
@@ -50,6 +56,11 @@ public class TestService extends Service {
             }
 
             @Override
+            public void convertDemo(DemoBean bean) throws RemoteException {
+                Log.d("hcg_test", "TestService  convertDemo!"+bean.getDemo2().getDemo2());
+            }
+
+            @Override
             public String diliverData() throws RemoteException {
                 Log.d("hcg_test", "diliverData!!!");
                 return "diliveryData success!!!";
@@ -58,12 +69,13 @@ public class TestService extends Service {
             @Override
             public void setCallBack(DeliveryMethod callback) throws RemoteException {
                 mList.register(callback);
+                DemoBean bean = new DemoBean(new Demo2Bean().setDemo2("sadfkjhasdkf hlskad").setDemo3(new Demo3Bean().setDemo2("我就不相信这个能成功！！！")));
                 mList.beginBroadcast();
                 int count = mList.getRegisteredCallbackCount();
                 Log.d("hcg_test", "setCallBack!!!count" + count);
                 for (int i = 0; i < count; i++) {
                     DeliveryMethod item = (DeliveryMethod) mList.getBroadcastItem(i);
-                    item.setCallBackDatas();
+                    item.setCallBackDatas(bean);
                 }
                 mList.finishBroadcast();
             }

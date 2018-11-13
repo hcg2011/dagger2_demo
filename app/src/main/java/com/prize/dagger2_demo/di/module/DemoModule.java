@@ -12,7 +12,14 @@ import dagger.Provides;
 public class DemoModule {
 
     @Provides
-    DemoBean provideDemoBean(){
-        return new DemoBean();
+    @Scopes.Dev
+    DemoBean provideDevBean() {
+        return new DemoBean("dev");
+    }
+
+    @Provides
+    @Scopes.Master
+    DemoBean provideMasterBean() {
+        return new DemoBean("master");
     }
 }

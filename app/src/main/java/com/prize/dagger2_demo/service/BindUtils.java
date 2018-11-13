@@ -1,4 +1,4 @@
-package com.prize.dagger2_demo;
+package com.prize.dagger2_demo.service;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -7,6 +7,10 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
+
+import com.prize.dagger2_demo.DeliveryMethod;
+import com.prize.dagger2_demo.TestAidlInterface;
+import com.prize.dagger2_demo.di.module.DemoBean;
 
 import static android.content.Context.BIND_AUTO_CREATE;
 
@@ -51,7 +55,7 @@ public class BindUtils {
     public void setCallBack() throws RemoteException {
         mAidl.setCallBack(new DeliveryMethod.Stub() {
             @Override
-            public void setCallBackDatas() throws RemoteException {
+            public void setCallBackDatas(DemoBean bean) throws RemoteException {
                 Log.d("hcg_test", "setCallBackDatas!");
             }
         });

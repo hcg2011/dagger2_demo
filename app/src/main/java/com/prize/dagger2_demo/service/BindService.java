@@ -1,4 +1,4 @@
-package com.prize.dagger2_demo;
+package com.prize.dagger2_demo.service;
 
 import android.app.Service;
 import android.content.ComponentName;
@@ -13,9 +13,18 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.prize.dagger2_demo.DeliveryMethod;
+import com.prize.dagger2_demo.dummy.MessageEvent;
+import com.prize.dagger2_demo.TestAidlInterface;
+import com.prize.dagger2_demo.di.component.DaggerServiceComponent;
+import com.prize.dagger2_demo.di.module.Demo2Bean;
+import com.prize.dagger2_demo.di.module.DemoBean;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import javax.inject.Inject;
 
 public class BindService extends Service {
 
@@ -24,7 +33,8 @@ public class BindService extends Service {
     private static ServiceConnection mConnection;
     private static ServiceConnection mConnection2;
     private IBinder.DeathRecipient mRecipient;
-    private RemoteCallbackList<IInterface> mList = new RemoteCallbackList();
+    @Inject
+    public RemoteCallbackList<IInterface> mList;
 
     @Nullable
     @Override
@@ -35,6 +45,7 @@ public class BindService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        DaggerServiceComponent.builder().build().inject(this);
         EventBus.getDefault().register(this);
         bindService(this);
     }
@@ -47,7 +58,7 @@ public class BindService extends Service {
 
     public void bindService(Context ctx) {
         setConnection();
-        setConnection2();
+        //setConnection2();
     }
 
     private void setConnection() {
@@ -62,7 +73,6 @@ public class BindService extends Service {
                         e.printStackTrace();
                     }
                     Log.d("hcg_test", "onServiceConnected!");
-                    // setTest();
                 }
 
                 @Override
@@ -82,6 +92,7 @@ public class BindService extends Service {
             //            Intent intent = new Intent(ctx, TestService.class);
             //            ctx.bindService(intent, mConnection, BIND_AUTO_CREATE);
         };
+        Log.d("hcg_Test","mList===="+mList);
     }
 
     private void setConnection2() {
@@ -109,18 +120,10 @@ public class BindService extends Service {
     public void setCallBack() throws RemoteException {
         mAidl.setCallBack(new DeliveryMethod.Stub() {
             @Override
-            public void setCallBackDatas() throws RemoteException {
+            public void setCallBackDatas(DemoBean bean) throws RemoteException {
                 Log.d("hcg_test", "setCallBackDatas!");
             }
         });
-
-        mAidl2.setCallBack(new DeliveryMethod.Stub() {
-            @Override
-            public void setCallBackDatas() throws RemoteException {
-                Log.d("hcg_test", "setCallBackDatas2!");
-            }
-        });
-
 
     }
 
@@ -147,9 +150,17 @@ public class BindService extends Service {
         Log.d("hcg_test", "s====" + s);
     }
 
-    public void convertData(String msg) throws RemoteException {
-        mAidl.convertData(msg);
-        mAidl2.convertData(msg);
+    public void convertData(String msg){
+        Log.d("hcg_test", "convertData " + msg);
+        //mAidl.convertData(msg);
+        DemoBean demoBean = new DemoBean();
+        demoBean.setDemo2(new Demo2Bean(msg));
+        try {
+            mAidl.convertDemo(demoBean);
+        } catch (RemoteException e) {
+            Log.d("hcg_test", "RemoteException " + e);
+            e.printStackTrace();
+        }
     }
 
     @Override

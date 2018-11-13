@@ -1,1 +1,1 @@
-include ':app', ':feedstream'
+include ':app'
